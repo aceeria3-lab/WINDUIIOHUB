@@ -24605,6 +24605,13 @@ function f.Icon(g,h,i)
 i=i~=false
 local j,l=parseIconString(g)
 
+if type(g)=="string" and string.find(g,"^rbxassetid://") then
+    return {
+        g,
+        {ImageRectSize=Vector2.new(0,0),ImageRectPosition=Vector2.new(0,0)},
+    }
+end
+
 local m=j or h or f.IconsType
 local p=l
 
