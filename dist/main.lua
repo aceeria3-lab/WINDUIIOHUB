@@ -29504,15 +29504,19 @@ local am=ac("UIScale",{
 Scale=1,
 })
 
-local an=ac("Frame",{
-Size=UDim2.new(0,0,0,44),
-AutomaticSize="X",
+local an=ac("ImageButton",{
+Size=UDim2.new(0,44,0,44),
 Parent=al,
-Active=false,
-BackgroundTransparency=.25,
+Active=true,
+BackgroundTransparency=1,
 ZIndex=99,
-BackgroundColor3=Color3.new(0,0,0),
+Image="rbxassetid://139934599708171",
+ScaleType="Fit",
 },{
+ac("UIScale",{
+Scale=1,
+}),
+})
 am,
 ac("UICorner",{
 CornerRadius=UDim.new(1,0)
@@ -29574,6 +29578,15 @@ if ah then
 ah:Destroy()
 end
 if ap then
+if typeof(ap)=="string" and string.find(ap,"^rbxassetid://") then
+ah=ab.New("ImageLabel",{
+Size=UDim2.new(0,22,0,22),
+BackgroundTransparency=1,
+Image=ap,
+LayoutOrder=-1,
+})
+ah.Parent=ag.Button.TextButton
+else
 ah=ab.Image(
 ap,
 af.Title,
@@ -29586,6 +29599,7 @@ af.IconThemed
 ah.Size=UDim2.new(0,22,0,22)
 ah.LayoutOrder=-1
 ah.Parent=ag.Button.TextButton
+end
 end
 end
 
@@ -29626,7 +29640,7 @@ Title=aq.Title,
 Icon=aq.Icon,
 Enabled=aq.Enabled,
 Position=aq.Position,
-OnlyIcon=aq.OnlyIcon~=false,
+OnlyIcon=aq.OnlyIcon==true,
 Draggable=aq.Draggable or nil,
 OnlyMobile=aq.OnlyMobile,
 CornerRadius=aq.CornerRadius or UDim.new(1,0),
@@ -29635,8 +29649,6 @@ Scale=aq.Scale or 1,
 Color=aq.Color
 or ColorSequence.new(Color3.fromHex"40c9ff",Color3.fromHex"e81cff"),
 }
-
-
 
 if ar.Enabled==false then
 af.IsOpenButtonEnabled=false
@@ -29648,11 +29660,9 @@ else
 af.IsPC=false
 end
 
-
 if ar.Draggable==false and aj and ak then
 aj.Visible=ar.Draggable
 ak.Visible=ar.Draggable
-
 if ao then
 ao:Set(ar.Draggable)
 end
@@ -29666,15 +29676,11 @@ if ar.OnlyIcon==true and ai then
 ai.Visible=false
 an.TextButton.UIPadding.PaddingLeft=UDim.new(0,7)
 an.TextButton.UIPadding.PaddingRight=UDim.new(0,7)
-elseif ar.OnlyIcon==false then
+else
 ai.Visible=true
 an.TextButton.UIPadding.PaddingLeft=UDim.new(0,11)
 an.TextButton.UIPadding.PaddingRight=UDim.new(0,11)
 end
-
-
-
-
 
 if ai then
 if ar.Title then
