@@ -29459,6 +29459,7 @@ TextSize=17,
 FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
 BackgroundTransparency=1,
 AutomaticSize="XY",
+Visible=false,
 })
 
 local aj=ac("Frame",{
@@ -29625,7 +29626,7 @@ Title=aq.Title,
 Icon=aq.Icon,
 Enabled=aq.Enabled,
 Position=aq.Position,
-OnlyIcon=aq.OnlyIcon or false,
+OnlyIcon=aq.OnlyIcon~=false,
 Draggable=aq.Draggable or nil,
 OnlyMobile=aq.OnlyMobile,
 CornerRadius=aq.CornerRadius or UDim.new(1,0),
@@ -38072,8 +38073,8 @@ Padding=UDim.new(0,aw.UIPadding/2),
 ao("Frame",{
 AutomaticSize="XY",
 BackgroundTransparency=1,
-Position=UDim2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0,0.5,0),
-AnchorPoint=Vector2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0.5),
+Position=UDim2.new(1,0,0.5,0),
+AnchorPoint=Vector2.new(1,0.5),
 Name="Right",
 },{
 ao("UIListLayout",{
@@ -38084,11 +38085,8 @@ SortOrder="LayoutOrder",
 }),
 ao("UIPadding",{
 PaddingTop=UDim.new(0,aw.UIPadding),
-PaddingLeft=UDim.new(
-0,
-aw.Topbar.ButtonsType=="Default"and aw.UIPadding or aw.UIPadding-2
-),
-PaddingRight=UDim.new(0,8),
+PaddingLeft=UDim.new(0,aw.UIPadding-2),
+PaddingRight=UDim.new(0,12),
 PaddingBottom=UDim.new(0,aw.UIPadding),
 }),
 }),
@@ -38102,7 +38100,7 @@ local A=aw.UIElements.Main.Main.Topbar.Right.UIListLayout.AbsoluteContentSize.X
 
 z=aw.UIElements.Main.Main.Topbar.Left.AbsoluteSize.X/av.WindUI.UIScale
 if aw.Topbar.ButtonsType~="Default"then
-z=z+A+aw.UIPadding-4
+z=z
 end
 
 aw.UIElements.Main.Main.Topbar.Center.Position=
@@ -38111,7 +38109,7 @@ aw.UIElements.Main.Main.Topbar.Center.Size=UDim2.new(
 1,
 -z
 -(aw.UIPadding/av.WindUI.UIScale)
--(aw.Topbar.ButtonsType=="Default"and A+aw.UIPadding or 0),
+-(A+aw.UIPadding),
 1,
 0
 )
@@ -38140,7 +38138,7 @@ G,
 "WindowTopbarButtonIcon"
 )
 L.Size=aw.Topbar.ButtonsType=="Default"
-and UDim2.new(0,J or aw.TopBarButtonIconSize,0,J or aw.TopBarButtonIconSize)
+and UDim2.new(0,(J or aw.TopBarButtonIconSize)*1.5,0,(J or aw.TopBarButtonIconSize)*1.5)
 or UDim2.new(0,0,0,0)
 L.AnchorPoint=Vector2.new(0.5,0.5)
 L.Position=UDim2.new(0.5,0,0.5,0)
@@ -38155,8 +38153,8 @@ aw.Topbar.ButtonsType=="Default"and aw.UICorner-(aw.UIPadding/2)or 999,
 "Squircle",
 {
 Size=aw.Topbar.ButtonsType=="Default"
-and UDim2.new(0,aw.Topbar.Height-16,0,aw.Topbar.Height-16)
-or UDim2.new(0,14,0,14),
+and UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8)
+or UDim2.new(0,18,0,18),
 LayoutOrder=F or 999,
 
 
@@ -38191,8 +38189,8 @@ true
 )
 
 local N=ao("Frame",{
-Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,24,0,24)
-or UDim2.new(0,aw.Topbar.Height-16,0,aw.Topbar.Height-16),
+Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,30,0,30)
+or UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8),
 BackgroundTransparency=1,
 Parent=aw.UIElements.Main.Main.Topbar.Right,
 LayoutOrder=F or 999,
