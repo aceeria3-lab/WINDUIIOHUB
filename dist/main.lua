@@ -38073,7 +38073,8 @@ ao("Frame",{
 AutomaticSize="XY",
 BackgroundTransparency=1,
 Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,32,0,32)or UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8),
-AnchorPoint=Vector2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0.5),
+Position=UDim2.new(1,0,0.5,0),
+AnchorPoint=Vector2.new(1,0.5),
 Name="Right",
 },{
 ao("UIListLayout",{
