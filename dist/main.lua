@@ -29459,7 +29459,6 @@ TextSize=17,
 FontFace=Font.new(ab.Font,Enum.FontWeight.Medium),
 BackgroundTransparency=1,
 AutomaticSize="XY",
-Visible=false,
 })
 
 local aj=ac("Frame",{
@@ -29504,19 +29503,15 @@ local am=ac("UIScale",{
 Scale=1,
 })
 
-local an=ac("ImageButton",{
-Size=UDim2.new(0,44,0,44),
+local an=ac("Frame",{
+Size=UDim2.new(0,0,0,44),
+AutomaticSize="X",
 Parent=al,
-Active=true,
-BackgroundTransparency=1,
+Active=false,
+BackgroundTransparency=.25,
 ZIndex=99,
-Image="rbxassetid://139934599708171",
-ScaleType="Fit",
+BackgroundColor3=Color3.new(0,0,0),
 },{
-ac("UIScale",{
-Scale=1,
-}),
-})
 am,
 ac("UICorner",{
 CornerRadius=UDim.new(1,0)
@@ -29578,15 +29573,6 @@ if ah then
 ah:Destroy()
 end
 if ap then
-if typeof(ap)=="string" and string.find(ap,"^rbxassetid://") then
-ah=ab.New("ImageLabel",{
-Size=UDim2.new(0,22,0,22),
-BackgroundTransparency=1,
-Image=ap,
-LayoutOrder=-1,
-})
-ah.Parent=ag.Button.TextButton
-else
 ah=ab.Image(
 ap,
 af.Title,
@@ -29599,7 +29585,6 @@ af.IconThemed
 ah.Size=UDim2.new(0,22,0,22)
 ah.LayoutOrder=-1
 ah.Parent=ag.Button.TextButton
-end
 end
 end
 
@@ -29640,7 +29625,7 @@ Title=aq.Title,
 Icon=aq.Icon,
 Enabled=aq.Enabled,
 Position=aq.Position,
-OnlyIcon=aq.OnlyIcon==true,
+OnlyIcon=aq.OnlyIcon or false,
 Draggable=aq.Draggable or nil,
 OnlyMobile=aq.OnlyMobile,
 CornerRadius=aq.CornerRadius or UDim.new(1,0),
@@ -29649,6 +29634,8 @@ Scale=aq.Scale or 1,
 Color=aq.Color
 or ColorSequence.new(Color3.fromHex"40c9ff",Color3.fromHex"e81cff"),
 }
+
+
 
 if ar.Enabled==false then
 af.IsOpenButtonEnabled=false
@@ -29660,9 +29647,11 @@ else
 af.IsPC=false
 end
 
+
 if ar.Draggable==false and aj and ak then
 aj.Visible=ar.Draggable
 ak.Visible=ar.Draggable
+
 if ao then
 ao:Set(ar.Draggable)
 end
@@ -29676,11 +29665,15 @@ if ar.OnlyIcon==true and ai then
 ai.Visible=false
 an.TextButton.UIPadding.PaddingLeft=UDim.new(0,7)
 an.TextButton.UIPadding.PaddingRight=UDim.new(0,7)
-else
+elseif ar.OnlyIcon==false then
 ai.Visible=true
 an.TextButton.UIPadding.PaddingLeft=UDim.new(0,11)
 an.TextButton.UIPadding.PaddingRight=UDim.new(0,11)
 end
+
+
+
+
 
 if ai then
 if ar.Title then
@@ -37340,7 +37333,7 @@ IsToggleDragging=false,
 
 aw.UICorner=aw.Radius
 
-aw.TopBarButtonIconSize=aw.TopBarButtonIconSize or(aw.Topbar.ButtonsType=="Mac"and 11 or 16)
+aw.TopBarButtonIconSize=aw.TopBarButtonIconSize or(aw.Topbar.ButtonsType=="Mac"and 15 or 22)
 
 aw.ElementConfig={
 UIPadding=(aw.NewElements and 10 or 13),
@@ -38079,8 +38072,8 @@ Padding=UDim.new(0,aw.UIPadding/2),
 ao("Frame",{
 AutomaticSize="XY",
 BackgroundTransparency=1,
-Position=UDim2.new(1,0,0.5,0),
-AnchorPoint=Vector2.new(1,0.5),
+Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,32,0,32)or UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8)
+AnchorPoint=Vector2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0.5),
 Name="Right",
 },{
 ao("UIListLayout",{
@@ -38091,8 +38084,11 @@ SortOrder="LayoutOrder",
 }),
 ao("UIPadding",{
 PaddingTop=UDim.new(0,aw.UIPadding),
-PaddingLeft=UDim.new(0,aw.UIPadding-2),
-PaddingRight=UDim.new(0,12),
+PaddingLeft=UDim.new(
+0,
+aw.Topbar.ButtonsType=="Default"and aw.UIPadding or aw.UIPadding-2
+),
+PaddingRight=UDim.new(0,8),
 PaddingBottom=UDim.new(0,aw.UIPadding),
 }),
 }),
@@ -38105,9 +38101,7 @@ local A=aw.UIElements.Main.Main.Topbar.Right.UIListLayout.AbsoluteContentSize.X
 /av.WindUI.UIScale
 
 z=aw.UIElements.Main.Main.Topbar.Left.AbsoluteSize.X/av.WindUI.UIScale
-if aw.Topbar.ButtonsType~="Default"then
-z=z
-end
+if false then z=z end
 
 aw.UIElements.Main.Main.Topbar.Center.Position=
 UDim2.new(0,z+(aw.UIPadding/av.WindUI.UIScale),0.5,0)
@@ -38121,16 +38115,7 @@ aw.UIElements.Main.Main.Topbar.Center.Size=UDim2.new(
 )
 end)
 
-if aw.Topbar.ButtonsType~="Default"then
-an.AddSignal(aw.UIElements.Main.Main.Topbar.Right:GetPropertyChangedSignal"AbsoluteSize",function()
-aw.UIElements.Main.Main.Topbar.Left.Position=UDim2.new(
-0,
-(aw.UIElements.Main.Main.Topbar.Right.AbsoluteSize.X/av.WindUI.UIScale)+aw.UIPadding-4,
-0,
-0
-)
-end)
-end
+-- Mac left reposition disabled
 
 function aw.CreateTopbarButton(z,A,B,C,F,G,H,J)
 local L=an.Image(
@@ -38143,9 +38128,7 @@ aw.Topbar.ButtonsType=="Default"and true or false,
 G,
 "WindowTopbarButtonIcon"
 )
-L.Size=aw.Topbar.ButtonsType=="Default"
-and UDim2.new(0,(J or aw.TopBarButtonIconSize)*1.5,0,(J or aw.TopBarButtonIconSize)*1.5)
-or UDim2.new(0,0,0,0)
+L.Size=aw.Topbar.ButtonsType=="Default"and UDim2.new(0,(J or aw.TopBarButtonIconSize)*1.5,0,(J or aw.TopBarButtonIconSize)*1.5)or UDim2.new(0,14,0,14)
 L.AnchorPoint=Vector2.new(0.5,0.5)
 L.Position=UDim2.new(0.5,0,0.5,0)
 L.ImageLabel.ImageTransparency=aw.Topbar.ButtonsType=="Default"and 0 or 1
@@ -38159,8 +38142,8 @@ aw.Topbar.ButtonsType=="Default"and aw.UICorner-(aw.UIPadding/2)or 999,
 "Squircle",
 {
 Size=aw.Topbar.ButtonsType=="Default"
-and UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8)
-or UDim2.new(0,18,0,18),
+and UDim2.new(0,aw.Topbar.Height-16,0,aw.Topbar.Height-16)
+or UDim2.new(0,20,0,20)
 LayoutOrder=F or 999,
 
 
@@ -38195,8 +38178,8 @@ true
 )
 
 local N=ao("Frame",{
-Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,30,0,30)
-or UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8),
+Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,24,0,24)
+or UDim2.new(0,aw.Topbar.Height-16,0,aw.Topbar.Height-16),
 BackgroundTransparency=1,
 Parent=aw.UIElements.Main.Main.Topbar.Right,
 LayoutOrder=F or 999,
