@@ -38143,7 +38143,7 @@ aw.Topbar.ButtonsType=="Default"and aw.UICorner-(aw.UIPadding/2)or 999,
 {
 Size=aw.Topbar.ButtonsType=="Default"
 and UDim2.new(0,aw.Topbar.Height-16,0,aw.Topbar.Height-16)
-or UDim2.new(0,20,0,20)
+or UDim2.new(0,20,0,20),
 LayoutOrder=F or 999,
 
 
