@@ -38072,7 +38072,8 @@ Padding=UDim.new(0,aw.UIPadding/2),
 ao("Frame",{
 AutomaticSize="XY",
 BackgroundTransparency=1,
-Position=UDim2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0,0.5,0),
+Position=UDim2.new(1,0,0.5,0),
+AnchorPoint=Vector2.new(1,0.5),
 Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,32,0,32)or UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8),
 Name="Right",
 },{
