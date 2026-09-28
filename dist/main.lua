@@ -25610,26 +25610,7 @@ function p.Image(v,x,z,A,B,C,F,G)
 A=A or"Temp"
 x=p.SanitizeFilename(x)
 
-if typeof(v)=="string" and string.find(v,"^rbxassetid://") then
-    return r("Frame",{
-        Size=UDim2.new(0,0,0,0),
-        BackgroundTransparency=1,
-    },{
-        r("ImageLabel",{
-            Size=UDim2.new(1,0,1,0),
-            BackgroundTransparency=1,
-            ScaleType="Fit",
-            Image=v,
-            ThemeTag=(C and(G or"Icon")or nil) and {
-                ImageColor3=C and(G or"Icon")or nil,
-            } or nil,
-        },{
-            r("UICorner",{
-                CornerRadius=UDim.new(0,z),
-            }),
-        }),
-    })
-end
+
 
 local H=r("Frame",{
 Size=UDim2.new(0,0,0,0),
