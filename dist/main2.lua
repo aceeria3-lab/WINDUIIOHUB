@@ -37333,7 +37333,7 @@ IsToggleDragging=false,
 
 aw.UICorner=aw.Radius
 
-aw.TopBarButtonIconSize=aw.TopBarButtonIconSize or(aw.Topbar.ButtonsType=="Mac"and 11 or 16)
+aw.TopBarButtonIconSize=aw.TopBarButtonIconSize or(aw.Topbar.ButtonsType=="Mac"and 15 or 22)
 
 aw.ElementConfig={
 UIPadding=(aw.NewElements and 10 or 13),
@@ -38073,7 +38073,7 @@ ao("Frame",{
 AutomaticSize="XY",
 BackgroundTransparency=1,
 Position=UDim2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0,0.5,0),
-AnchorPoint=Vector2.new(aw.Topbar.ButtonsType=="Default"and 1 or 0,0.5),
+Size=aw.Topbar.ButtonsType~="Default"and UDim2.new(0,32,0,32)or UDim2.new(0,aw.Topbar.Height-8,0,aw.Topbar.Height-8),
 Name="Right",
 },{
 ao("UIListLayout",{
@@ -38101,9 +38101,7 @@ local A=aw.UIElements.Main.Main.Topbar.Right.UIListLayout.AbsoluteContentSize.X
 /av.WindUI.UIScale
 
 z=aw.UIElements.Main.Main.Topbar.Left.AbsoluteSize.X/av.WindUI.UIScale
-if aw.Topbar.ButtonsType~="Default"then
-z=z+A+aw.UIPadding-4
-end
+if false then z=z end
 
 aw.UIElements.Main.Main.Topbar.Center.Position=
 UDim2.new(0,z+(aw.UIPadding/av.WindUI.UIScale),0.5,0)
@@ -38111,13 +38109,13 @@ aw.UIElements.Main.Main.Topbar.Center.Size=UDim2.new(
 1,
 -z
 -(aw.UIPadding/av.WindUI.UIScale)
--(aw.Topbar.ButtonsType=="Default"and A+aw.UIPadding or 0),
+-(A+aw.UIPadding),
 1,
 0
 )
 end)
 
-if aw.Topbar.ButtonsType~="Default"then
+if false then
 an.AddSignal(aw.UIElements.Main.Main.Topbar.Right:GetPropertyChangedSignal"AbsoluteSize",function()
 aw.UIElements.Main.Main.Topbar.Left.Position=UDim2.new(
 0,
@@ -38139,9 +38137,7 @@ aw.Topbar.ButtonsType=="Default"and true or false,
 G,
 "WindowTopbarButtonIcon"
 )
-L.Size=aw.Topbar.ButtonsType=="Default"
-and UDim2.new(0,J or aw.TopBarButtonIconSize,0,J or aw.TopBarButtonIconSize)
-or UDim2.new(0,0,0,0)
+L.Size=aw.Topbar.ButtonsType=="Default"and UDim2.new(0,(J or aw.TopBarButtonIconSize)*1.5,0,(J or aw.TopBarButtonIconSize)*1.5)or UDim2.new(0,14,0,14)
 L.AnchorPoint=Vector2.new(0.5,0.5)
 L.Position=UDim2.new(0.5,0,0.5,0)
 L.ImageLabel.ImageTransparency=aw.Topbar.ButtonsType=="Default"and 0 or 1
@@ -38156,7 +38152,7 @@ aw.Topbar.ButtonsType=="Default"and aw.UICorner-(aw.UIPadding/2)or 999,
 {
 Size=aw.Topbar.ButtonsType=="Default"
 and UDim2.new(0,aw.Topbar.Height-16,0,aw.Topbar.Height-16)
-or UDim2.new(0,14,0,14),
+or UDim2.new(0,20,0,20),
 LayoutOrder=F or 999,
 
 
